@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DemoModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DemoEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Departments" EntityType="DemoModel.Department" />
+    <EntitySet Name="Employees" EntityType="DemoModel.Employee" />
+    <FunctionImport Name="usp_Department_GetAll" ReturnType="Collection(DemoModel.usp_Department_GetAll_Result)" />
+    <FunctionImport Name="usp_Employee_Delete">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_Employee_GetAll" ReturnType="Collection(DemoModel.usp_Employee_GetAll_Result)" />
+    <FunctionImport Name="usp_Employee_GetById" ReturnType="Collection(DemoModel.usp_Employee_GetById_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_Employee_Insert">
+      <Parameter Name="EmployeeName" Mode="In" Type="String" />
+      <Parameter Name="DepartmentId" Mode="In" Type="Int32" />
+      <Parameter Name="Salary" Mode="In" Type="Double" />
+      <Parameter Name="RowStatus" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_Employee_Update">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="EmployeeName" Mode="In" Type="String" />
+      <Parameter Name="DepartmentId" Mode="In" Type="Int32" />
+      <Parameter Name="Salary" Mode="In" Type="Double" />
+      <Parameter Name="RowStatus" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="RowStatus" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="EmpoyeeName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+    <Property Name="Salary" Type="Double" Nullable="false" />
+    <Property Name="RowStatus" Type="Int32" Nullable="false" />
+  </EntityType>
+  <ComplexType Name="usp_Department_GetAll_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="RowStatus" Nullable="false" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="usp_Employee_GetAll_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="EmpoyeeName" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="DepartmentId" Nullable="false" />
+    <Property Type="Double" Name="Salary" Nullable="false" />
+    <Property Type="Int32" Name="RowStatus" Nullable="false" />
+    <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="usp_Employee_GetById_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="EmpoyeeName" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="DepartmentId" Nullable="false" />
+    <Property Type="Double" Name="Salary" Nullable="false" />
+    <Property Type="Int32" Name="RowStatus" Nullable="false" />
+  </ComplexType>
+</Schema>

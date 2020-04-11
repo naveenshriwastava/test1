@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DemoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="DemoModelStoreContainer">
+          <EntitySet Name="Department" EntityType="DemoModel.Store.Department" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Employee" EntityType="DemoModel.Store.Employee" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="RowStatus" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EmpoyeeName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="DepartmentId" Type="int" Nullable="false" />
+          <Property Name="Salary" Type="float" Nullable="false" />
+          <Property Name="RowStatus" Type="int" Nullable="false" />
+        </EntityType>
+        <Function Name="usp_Department_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_Employee_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_Employee_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_Employee_GetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_Employee_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmployeeName" Type="varchar" Mode="In" />
+          <Parameter Name="DepartmentId" Type="int" Mode="In" />
+          <Parameter Name="Salary" Type="float" Mode="In" />
+          <Parameter Name="RowStatus" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_Employee_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="EmployeeName" Type="varchar" Mode="In" />
+          <Parameter Name="DepartmentId" Type="int" Mode="In" />
+          <Parameter Name="Salary" Type="float" Mode="In" />
+          <Parameter Name="RowStatus" Type="int" Mode="In" />
+        </Function>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DemoModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DemoEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Departments" EntityType="DemoModel.Department" />
+          <EntitySet Name="Employees" EntityType="DemoModel.Employee" />
+          <FunctionImport Name="usp_Department_GetAll" ReturnType="Collection(DemoModel.usp_Department_GetAll_Result)" />
+          <FunctionImport Name="usp_Employee_Delete">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Employee_GetAll" ReturnType="Collection(DemoModel.usp_Employee_GetAll_Result)" />
+          <FunctionImport Name="usp_Employee_GetById" ReturnType="Collection(DemoModel.usp_Employee_GetById_Result)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Employee_Insert">
+            <Parameter Name="EmployeeName" Mode="In" Type="String" />
+            <Parameter Name="DepartmentId" Mode="In" Type="Int32" />
+            <Parameter Name="Salary" Mode="In" Type="Double" />
+            <Parameter Name="RowStatus" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Employee_Update">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="EmployeeName" Mode="In" Type="String" />
+            <Parameter Name="DepartmentId" Mode="In" Type="Int32" />
+            <Parameter Name="Salary" Mode="In" Type="Double" />
+            <Parameter Name="RowStatus" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="RowStatus" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpoyeeName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+          <Property Name="Salary" Type="Double" Nullable="false" />
+          <Property Name="RowStatus" Type="Int32" Nullable="false" />
+        </EntityType>
+        <ComplexType Name="usp_Department_GetAll_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="RowStatus" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="usp_Employee_GetAll_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="EmpoyeeName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="DepartmentId" Nullable="false" />
+          <Property Type="Double" Name="Salary" Nullable="false" />
+          <Property Type="Int32" Name="RowStatus" Nullable="false" />
+          <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="usp_Employee_GetById_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="EmpoyeeName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="DepartmentId" Nullable="false" />
+          <Property Type="Double" Name="Salary" Nullable="false" />
+          <Property Type="Int32" Name="RowStatus" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DemoModelStoreContainer" CdmEntityContainer="DemoEntities">
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="DemoModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="RowStatus" ColumnName="RowStatus" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="DemoModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmpoyeeName" ColumnName="EmpoyeeName" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="RowStatus" ColumnName="RowStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_Department_GetAll" FunctionName="DemoModel.Store.usp_Department_GetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DemoModel.usp_Department_GetAll_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="RowStatus" ColumnName="RowStatus" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_Employee_Delete" FunctionName="DemoModel.Store.usp_Employee_Delete" />
+          <FunctionImportMapping FunctionImportName="usp_Employee_GetAll" FunctionName="DemoModel.Store.usp_Employee_GetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DemoModel.usp_Employee_GetAll_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmpoyeeName" ColumnName="EmpoyeeName" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="RowStatus" ColumnName="RowStatus" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_Employee_GetById" FunctionName="DemoModel.Store.usp_Employee_GetById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DemoModel.usp_Employee_GetById_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmpoyeeName" ColumnName="EmpoyeeName" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="RowStatus" ColumnName="RowStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_Employee_Insert" FunctionName="DemoModel.Store.usp_Employee_Insert" />
+          <FunctionImportMapping FunctionImportName="usp_Employee_Update" FunctionName="DemoModel.Store.usp_Employee_Update" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

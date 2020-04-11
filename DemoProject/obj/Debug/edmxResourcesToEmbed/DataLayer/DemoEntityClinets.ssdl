@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DemoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DemoModelStoreContainer">
+    <EntitySet Name="Department" EntityType="DemoModel.Store.Department" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Employee" EntityType="DemoModel.Store.Employee" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="DepartmentName" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="RowStatus" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="EmpoyeeName" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="DepartmentId" Type="int" Nullable="false" />
+    <Property Name="Salary" Type="float" Nullable="false" />
+    <Property Name="RowStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <Function Name="usp_Department_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_Employee_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_Employee_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_Employee_GetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_Employee_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EmployeeName" Type="varchar" Mode="In" />
+    <Parameter Name="DepartmentId" Type="int" Mode="In" />
+    <Parameter Name="Salary" Type="float" Mode="In" />
+    <Parameter Name="RowStatus" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_Employee_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="EmployeeName" Type="varchar" Mode="In" />
+    <Parameter Name="DepartmentId" Type="int" Mode="In" />
+    <Parameter Name="Salary" Type="float" Mode="In" />
+    <Parameter Name="RowStatus" Type="int" Mode="In" />
+  </Function>
+</Schema>

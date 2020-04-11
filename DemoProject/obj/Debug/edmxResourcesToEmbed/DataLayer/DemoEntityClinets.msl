@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DemoModelStoreContainer" CdmEntityContainer="DemoEntities">
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="DemoModel.Department">
+        <MappingFragment StoreEntitySet="Department">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="RowStatus" ColumnName="RowStatus" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="DemoModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EmpoyeeName" ColumnName="EmpoyeeName" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="RowStatus" ColumnName="RowStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="usp_Department_GetAll" FunctionName="DemoModel.Store.usp_Department_GetAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DemoModel.usp_Department_GetAll_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="RowStatus" ColumnName="RowStatus" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_Employee_Delete" FunctionName="DemoModel.Store.usp_Employee_Delete" />
+    <FunctionImportMapping FunctionImportName="usp_Employee_GetAll" FunctionName="DemoModel.Store.usp_Employee_GetAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DemoModel.usp_Employee_GetAll_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EmpoyeeName" ColumnName="EmpoyeeName" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="RowStatus" ColumnName="RowStatus" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_Employee_GetById" FunctionName="DemoModel.Store.usp_Employee_GetById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DemoModel.usp_Employee_GetById_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EmpoyeeName" ColumnName="EmpoyeeName" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="RowStatus" ColumnName="RowStatus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_Employee_Insert" FunctionName="DemoModel.Store.usp_Employee_Insert" />
+    <FunctionImportMapping FunctionImportName="usp_Employee_Update" FunctionName="DemoModel.Store.usp_Employee_Update" />
+  </EntityContainerMapping>
+</Mapping>
